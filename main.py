@@ -32,7 +32,7 @@ db = SQLAlchemy(app)
 ##FLASK LOGIN
 login_manager = LoginManager()
 login_manager.init_app(app)
-db.create_all()
+
 
 
 ##CONFIGURE TABLES
@@ -74,7 +74,7 @@ class Comment(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey("blog_posts.id"))
     blog_posts = relationship("BlogPost", back_populates="comments")
 
-# db.create_all()
+db.create_all()
 
 
 def admin_only(f):
