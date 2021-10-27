@@ -10,6 +10,7 @@ from flask_ckeditor import CKEditor
 from flask_gravatar import Gravatar
 from sqlalchemy.orm import relationship
 import os
+from datetime import datetime
 
 
 app = Flask(__name__)
@@ -76,6 +77,11 @@ class Comment(db.Model):
 
 #db.create_all()
 
+@app.context_processor
+def time_processor():
+    def format_time_year():
+        return datetime.now().strftime("%Y")
+    return dict(format_time_year=format_time_year)
 
 def admin_only(f):
     @wraps(f)
