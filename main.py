@@ -32,6 +32,7 @@ db = SQLAlchemy(app)
 ##FLASK LOGIN
 login_manager = LoginManager()
 login_manager.init_app(app)
+db.create_all()
 
 
 ##CONFIGURE TABLES
