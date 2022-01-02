@@ -4,6 +4,8 @@ from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
+
+import forms
 from forms import CreatePostForm, RegisterUserForm, UserLogin, UserComment
 from functools import wraps
 from flask_ckeditor import CKEditor
@@ -151,7 +153,7 @@ def logout():
 
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
-    form = Comment()
+    form = UserComment()
     requested_post = BlogPost.query.get(post_id)
 
     if form.validate_on_submit():
