@@ -163,7 +163,7 @@ def show_post(post_id):
             flash("Only users who are logged in can comment, please log in")
             return redirect(url_for('login'))
 
-    return render_template("post.html", post=requested_post, comment_form=comment_form)
+    return render_template("post.html", current_user=current_user, post=requested_post, comment_form=comment_form)
 
 
 @app.route("/about")
