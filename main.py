@@ -151,19 +151,24 @@ def logout():
 
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
+    form = CommentForm()
     requested_post = BlogPost.query.get(post_id)
-    comment_form = UserComment()
-    if comment_form.validate_on_submit():
-        if current_user.is_authenticated:
-            new_comment = Comment(text=comment_form.comment.data, post_id=post_id, author_id=current_user.id)
-            db.session.add(new_comment)
-            db.session.commit()
-            return render_template("post.html", post=requested_post, comment_form=comment_form)
-        else:
-            flash("Only users who are logged in can comment, please log in")
-            return redirect(url_for('login'))
 
-    return render_template("post.html", current_user=current_user, post=requested_post, comment_form=comment_form)
+    if form.validate_on_submit():
+        if not current_user.is_authenticated:
+            flash("You need to login or register to comment.")
+            return redirect(url_for("login"))
+
+        new_comment = Comment(
+            text=form.comment_text.data,
+            comment_author=current_user,
+            parent_post=requested_post
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+
+    return render_template("post.html", post=requested_post, form=form, current_user=current_user)
+
 
 
 @app.route("/about")
