@@ -151,12 +151,11 @@ def logout():
 
 @app.route("/post/<int:post_id>", methods=["GET", "POST"])
 def show_post(post_id):
-    form = CommentForm()
+    form = Comment()
     requested_post = BlogPost.query.get(post_id)
 
     if form.validate_on_submit():
         if not current_user.is_authenticated:
-            flash("You need to login or register to comment.")
             return redirect(url_for("login"))
 
         new_comment = Comment(
