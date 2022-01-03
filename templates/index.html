@@ -1,6 +1,5 @@
 {% include "header.html" %}
 
-
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('https://images.unsplash.com/photo-1629459736887-d751ac05b454?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1470&q=80')">
     <div class="overlay"></div>
@@ -31,11 +30,11 @@
             </h3>
           </a>
           <p class="post-meta">Posted by
-            <a href="#">{{ post.author.name.title() }}</a>
+            {{post.author.name.title()}}
             on {{post.date}}
-          
+           {% if current_user.id == 1: %}
             <a href="{{url_for('delete_post', post_id=post.id) }}">✘</a>
-          
+            {% endif %}
           </p>
         </div>
         <hr>
