@@ -4,8 +4,6 @@ from datetime import date
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
-
-import forms
 from forms import CreatePostForm, RegisterUserForm, UserLogin, UserComment
 from functools import wraps
 from flask_ckeditor import CKEditor
@@ -171,7 +169,6 @@ def show_post(post_id):
     return render_template("post.html", post=requested_post, form=form, current_user=current_user)
 
 
-
 @app.route("/about")
 def about():
     return render_template("about.html")
@@ -201,7 +198,7 @@ def add_new_post():
     return render_template("make-post.html", form=form, current_user=current_user)
 
 
-@app.route("/edit-post/<int:post_id>")
+@app.route("/edit-post/<int:post_id>", methods=["GET", "POST"])
 @admin_only
 def edit_post(post_id):
     post = BlogPost.query.get(post_id)
