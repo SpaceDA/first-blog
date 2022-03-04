@@ -179,7 +179,7 @@ def contact():
     return render_template("contact.html")
 
 
-@app.route("/new-post", methods=["GET", "POST"])
+@app.route("/new-post", methods=["GET", "POST", "PUT"])
 def add_new_post():
     form = CreatePostForm()
     if form.validate_on_submit():
@@ -218,7 +218,7 @@ def edit_post(post_id):
         db.session.commit()
         return redirect(url_for("show_post", post_id=post.id))
 
-    return render_template("make-post.html", form=edit_form)
+    return render_template("make-post.html", form=edit_form, is_edit=True, current_user=current_user)
 
 
 @app.route("/delete/<int:post_id>")
