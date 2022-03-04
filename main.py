@@ -97,6 +97,11 @@ def admin_only(f):
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+@app.route("/troubleshoot")
+def troubleshoot():
+    users = User.query.all()
+    return render_template('troubleshoot.html', users=users)
+
 @app.route('/')
 def get_all_posts():
     posts = BlogPost.query.all()
