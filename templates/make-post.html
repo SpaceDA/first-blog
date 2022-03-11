@@ -3,6 +3,9 @@
 
 {% block content %}
 {% include "header.html" %}
+<head>
+    {{ ckeditor.load_code_theme() }}
+</head>
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/edit-bg.jpg')}}')">
     <div class="overlay"></div>
@@ -20,6 +23,7 @@
         </div>
       </div>
     </div>
+
   </header>
 
   <div class="container">
