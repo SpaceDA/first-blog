@@ -15,6 +15,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 ckeditor = CKEditor(app)
 Bootstrap(app)
 gravatar = Gravatar(app,
@@ -29,7 +30,7 @@ gravatar = Gravatar(app,
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_DATABASE", "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
+
 db = SQLAlchemy(app)
 ##FLASK LOGIN
 login_manager = LoginManager()
