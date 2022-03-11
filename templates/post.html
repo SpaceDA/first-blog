@@ -3,7 +3,9 @@
 
 {% block content %}
 {% include "header.html" %}
-
+<head>
+    {{ ckeditor.load_code_theme() }}
+</head>
 <!-- Page Header -->
 <header class="masthead" style="background-image: url('{{post.img_url}}')">
     <div class="overlay"></div>

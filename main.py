@@ -29,6 +29,7 @@ gravatar = Gravatar(app,
 ##CONNECT TO DB
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_DATABASE", "sqlite:///blog.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 db = SQLAlchemy(app)
 ##FLASK LOGIN
 login_manager = LoginManager()
