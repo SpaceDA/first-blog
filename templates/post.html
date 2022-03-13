@@ -43,6 +43,14 @@
                 {{ ckeditor.config(name='comment_text') }}
                 {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
 
+                <form method="post">
+			{{ form.csrf_token }}
+			{{ form.comment.label }}<br>
+			{{ form.comment }}<br><br>
+			<br>
+			{{ form.submit }}
+		</form>
+
 
                 <div class="col-lg-8 col-md-10 mx-auto comment">
                     {% for comment in post.comments: %}

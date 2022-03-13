@@ -14,7 +14,8 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+# app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] = '1234'
 app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 ckeditor = CKEditor(app)
 Bootstrap(app)
@@ -236,4 +237,4 @@ def delete_post(post_id):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='localhost', port=7000)
