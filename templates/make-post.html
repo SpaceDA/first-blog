@@ -5,6 +5,7 @@
 {% include "header.html" %}
 <head>
     {{ ckeditor.load_code_theme() }}
+  <script><script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
 </head>
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/edit-bg.jpg')}}')">
@@ -32,15 +33,13 @@
         {{ ckeditor.load() }}
         {{ ckeditor.config(name='body') }}
         {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
+        {{ ckeditor.config(name='body') }}
       </div>
     </div>
   </div>
 {{ ckeditor.load() }}
-{{ ckeditor.config(name='body') }}
+
 
 {% include "footer.html" %}
-<script>
-		Enable local "codesnippet" plugin from /ckeditor/static/standard/plugins/codesnippet/ path.
-		CKEDITOR.plugins.addExternal( 'codesnippet', '/ckeditor/static/standard/plugins/codesnippet/', 'plugin.js' );
-</script>
+
 {% endblock %}
