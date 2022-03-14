@@ -21,6 +21,9 @@
   <!-- Custom styles for this template -->
   <link href="{{ url_for('static', filename='css/clean-blog.min.css')}}" rel="stylesheet">
 
+  {{ ckeditor.load(custom_url=url_for('static', filename='ckeditor/ckeditor.js')) }}
+
+
 </head>
 
 <body>
