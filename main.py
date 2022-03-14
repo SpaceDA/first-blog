@@ -14,8 +14,7 @@ from datetime import datetime
 
 
 app = Flask(__name__)
-# app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
-app.config['SECRET_KEY'] = '1234'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
 app.config['CKEDITOR_ENABLE_CODESNIPPET'] = True
 app.config['CKEDITOR_SERVE_LOCAL'] = True
 ckeditor = CKEditor(app)
