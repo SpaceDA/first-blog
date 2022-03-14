@@ -5,7 +5,6 @@
 {% include "header.html" %}
 <head>
     {{ ckeditor.load_code_theme() }}
-  <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
 </head>
   <!-- Page Header -->
   <header class="masthead" style="background-image: url('{{ url_for('static', filename='img/edit-bg.jpg')}}')">
@@ -30,14 +29,27 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        {{ ckeditor.load() }}
-        {{ ckeditor.config(name='body') }}
-        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
-        {{ ckeditor.config(name='body') }}
-      </div>
-    </div>
+        <form method="post">
+			{{ form.csrf_token }}
+			{{ form.title.label }}<br>
+			{{ form.title }}<br><br>
+            {{ form.subtitle.label }}<br>
+            {{ form.subtitle }}<br><br>
+            {{ form.img_url.label }}<br>
+            {{ form.img_url  }}<br><br>
+			{{ form.body.label }}<br>
+			{{ form.body }}
+			<br>
+			{{ form.submit }}
+		</form>
+	</div>
+    {{ ckeditor.load() }}
+	{{ ckeditor.config(name='body') }}
   </div>
-{{ ckeditor.load() }}
+  </div>
+
+
+
 
 
 {% include "footer.html" %}
